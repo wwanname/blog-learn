@@ -1,0 +1,145 @@
+<footer>
+    <div>
+        <p>
+            Inspired by
+            <a
+                class="focus:outline-none focus:ring-2 focus:ring-[var(--accent)] cursor-pointer focus:ring-offset-2 focus:ring-offset-gray-100 dark:focus:ring-offset-gray-800 transition-all"
+                href="http://maximeheckel.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Visit Maxime Heckel, he creates Color System"
+            >
+                Maxime Heckel,
+            </a>
+            <a
+                class="focus:outline-none focus:ring-2 focus:ring-[var(--accent)] cursor-pointer focus:ring-offset-2 focus:ring-offset-gray-100 dark:focus:ring-offset-gray-800 transition-all"
+                href="http://olivierlarose.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Visit Olivier Larose who is the great teacher and also Content Creator on YouTube, he creates good layout blog that inspires me"
+            >
+                Olivier Larose,
+            </a>
+            <a
+                class="focus:outline-none focus:ring-2 focus:ring-[var(--accent)] cursor-pointer focus:ring-offset-2 focus:ring-offset-gray-100 dark:focus:ring-offset-gray-800 transition-all"
+                href="https://www.craftz.dog/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Visit Takuya Matsuyama who creates Inkdrop that uses to write markdown, he inspired me to make the great accessibility"
+            >
+                Devas.life,
+            </a>
+            <a
+                class="focus:outline-none focus:ring-2 focus:ring-[var(--accent)] cursor-pointer focus:ring-offset-2 focus:ring-offset-gray-100 dark:focus:ring-offset-gray-800 transition-all"
+                href="https://framer.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Visit Framer, I inspired by their layout sections"
+            >
+                Framer,
+            </a>
+            <a
+                class="focus:outline-none focus:ring-2 focus:ring-[var(--accent)] cursor-pointer focus:ring-offset-2 focus:ring-offset-gray-100 dark:focus:ring-offset-gray-800 transition-all"
+                href="http://animejs.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Visit Anime.js that insane API animation library, I inspired by his website's dark color"
+            >
+                Anime.js,
+            </a>
+            <a
+                class="focus:outline-none focus:ring-2 focus:ring-[var(--accent)] cursor-pointer focus:ring-offset-2 focus:ring-offset-gray-100 dark:focus:ring-offset-gray-800 transition-all"
+                href="https://rauno.me/craft"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Visit Rauno Freiberg who works on Vercel, he creates the great UI/UX resources to inspire this website's interaction"
+            >
+                Rauno Freiberg
+            </a>
+        </p>
+    </div>
+    <div>
+        <span>
+            Version 1.0
+        </span>
+        <span id="update-status" aria-live="polite" aria-describedby="update-status-description">
+            Updating...
+        </span>
+    </div>
+</footer>
+
+<div id="update-status-description" class="sr-only">
+    This is the status of the update process. It changes when the update is complete.
+</div>
+
+
+<style>
+    footer {
+        width: 100%;
+        height: 1.75rem;
+        display: inline-flex;
+        flex-direction: row-reverse;
+        justify-content: space-between;
+        align-items: center;
+        background-color: rgba(var(--background), 0.8);
+        border-top: 1px solid var(--noticeoklch);
+        backdrop-filter: blur(4px);
+    }
+    footer div {
+        width: fit-content;
+        display: block;
+        font-size: calc(0.875rem - 0.25rem);
+        line-height: calc(1.25rem - 0.25rem);
+        gap: -1rem;
+    }
+    footer div p {
+        right: 0;
+        color: var(--sl-color-black);
+        font-weight: normal;
+        margin-right: 0.45rem;
+        ::selection {
+            color: var(--sl-color-white);
+            background-color: var(--sl-color-accent);
+        }
+    }
+    footer div p a {
+        color: var(--accent);
+        border-radius: 0.125rem;
+        outline: none;
+        transition: all 0.3s ease;
+    }
+    footer div span {
+        margin-left: 0.45rem;
+        color: var(--noticeoklch);
+        display: flex;
+        font-size: calc(0.875rem - 0.25rem);
+        line-height: calc(1.25rem - 0.25rem);
+    }
+    @media (max-width: 1100px) {
+        footer div span {
+            margin-left: 0.45rem;
+            color: var(--noticeoklch);
+            display: flex;
+            font-size: calc(0.875rem - 0.4rem);
+            line-height: calc(1.25rem - 0.4rem);
+        }
+    }
+    @media (min-width: 1536px) {
+        footer {
+            height: 2.5rem;
+        }
+        footer div {
+            font-size: 0.875rem;
+            line-height: 1.25rem;
+        }
+        footer div p {
+            margin-top: -0.125rem;
+            margin-right: 1.25rem;
+        }
+    }
+    @media (max-width: 540px) {
+        footer div span {
+            display: none;
+        }
+    }
+</style>

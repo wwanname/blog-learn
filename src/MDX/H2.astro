@@ -1,0 +1,8 @@
+---
+import TextArticle from "../components/TextArticle.astro"
+const { id } = Astro.props
+---
+
+<TextArticle id={id} size="xl" theme="primary" type="h2" classes="pt-4 lg:pt-6 2xl:pt-4">
+    <slot />
+</TextArticle>

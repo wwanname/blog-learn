@@ -1,0 +1,52 @@
+---
+import { type CollectionEntry, getCollection, render } from 'astro:content'
+import ArticleWrapper from '../../../layouts/TutorialLayout.astro'
+import blockquote from '../../../MDX/blockquote.astro'
+import strong from '../../../MDX/strong.astro'
+import code from '../../../MDX/code.astro'
+import img from '../../../MDX/img.astro'
+import em from '../../../MDX/em.astro'
+import ol from '../../../MDX/ol.astro'
+import ul from '../../../MDX/ul.astro'
+import li from '../../../MDX/li.astro'
+import h4 from '../../../MDX/H4.astro'
+import h3 from '../../../MDX/H3.astro'
+import h2 from '../../../MDX/H2.astro'
+import p from '../../../MDX/p.astro'
+import a from '../../../MDX/a.astro'
+import '../../../MDX/article.css'
+
+export async function getStaticPaths() {
+  const posts = await getCollection('creativeblog')
+  return posts.map((post: { id: any }) => ({
+    params: { slug: post.id },
+    props: post
+  }))
+}
+
+type Props = CollectionEntry<'creativeblog'>
+
+const post = Astro.props
+const { Content, headings } = await render(post)
+---
+
+<ArticleWrapper headings={headings} frontmatter={post.data}>
+  <Content
+    components={{
+      ...post,
+      h4,
+      h3,
+      h2,
+      p,
+      ul,
+      li,
+      a,
+      blockquote,
+      strong,
+      img,
+      code,
+      em,
+      ol,
+    }}
+  />
+</ArticleWrapper>

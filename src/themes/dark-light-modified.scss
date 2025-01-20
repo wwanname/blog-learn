@@ -1,0 +1,232 @@
+/*
+  Name  : VSCode Default Dark Plus
+  Author: Fuyuno Mikazuki <https://mochizuki.moe>
+
+  Name: Prism Theme - One Light and One Dark <Structure Code>
+  Author: kenchandev <https://github.com/kenchandev/prism-theme-one-light-dark>
+
+ Original Color by Microsoft Visual Studio Code <https://github.com/microsoft/vscode> and dark-plus-syntax <https://github.com/dunstontc/dark-plus-syntax> 
+*/
+
+html {
+  --color-base: #24292f;
+  --color-builtin: #0550AE;
+  --color-class: #d7ba7d;
+  --color-comment: #A0A1A7;
+  --color-deleted: #E1AA76;
+  --color-function: #623ca7;
+  --color-keyword: #C5202C;
+  --color-number: #E1AA76;
+  --color-operator: #46A6B2;
+  --color-regex: #B668CD;
+  --color-string: #46A6B2;
+  --color-variable: #B668CD;
+}
+html.dark {
+    --color-base: #d4d4d4;
+    --color-builtin: #4ec9b0;
+    --color-class: #d7ba7d;
+    --color-comment: #6a9955;
+    --color-deleted: #f44747;
+    --color-function: #dcdcaa;
+    --color-keyword: #569cd6;
+    --color-number: #b5cea8;
+    --color-operator: #d4d4d4;
+    --color-regex: #646695;
+    --color-string: #ce9178;
+    --color-variable: #9cdcfe;
+}
+
+code[class*="language-"],
+pre[class*="language-"] {
+  font-family: Consolas, "Courier New", Courier, monospace;
+  font-size: 100%;
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+  line-height: 1.5;
+  color: var(--color-base);
+  text-align: left;
+  word-break: normal;
+  word-wrap: normal;
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+  white-space: pre;
+  background-color: none;
+  word-spacing: normal;
+}
+
+/* code blocks */
+pre[class*="language-"] {
+  overflow: auto;
+}
+
+code[class*="language-"]::-moz-selection,
+code[class*="language-"]::selection,
+code[class*="language-"] ::-moz-selection,
+code[class*="language-"] ::selection,
+pre[class*="language-"]::-moz-selection,
+pre[class*="language-"]::selection,
+pre[class*="language-"] ::-moz-selection,
+pre[class*="language-"] ::selection {
+  background-color: none;
+}
+
+/* inline code */
+:not(pre) > code[class*="language-"] {
+  white-space: normal;
+}
+
+/* common tokens */
+.token {
+  &.annotation,
+  &.builtin {
+    color: var(--color-builtin);
+  }
+
+  &.boolean {
+    color: var(--color-keyword);
+  }
+
+  &.comment,
+  &.doctype {
+    color: var(--color-comment);
+  }
+
+  &.constant,
+  &.class-name {
+    color: var(--color-builtin);
+  }
+
+  &.deleted {
+    color: var(--color-deleted);
+  }
+
+  &.function {
+    color: var(--color-function);
+  }
+
+  &.keyword {
+    color: var(--color-keyword);
+  }
+
+  &.macro {
+    &.property {
+      color: var(--color-keyword);
+    }
+  }
+
+  &.number {
+    color: var(--color-number);
+  }
+
+  &.operator {
+    color: var(--color-operator);
+  }
+
+  &.tag {
+    .token {
+      &.attr-name {
+        color: var(--color-variable);
+      }
+
+      &.attr-value {
+        color: var(--color-string);
+
+        &.punctuation {
+          color: var(--color-string);
+        }
+      }
+
+      &.class-name {
+        color: var(--color-builtin);
+      }
+
+      &.punctuation {
+        color: var(--color-base);
+        opacity: 0.7;
+      }
+
+      &.tag {
+        color: var(--color-keyword);
+      }
+    }
+  }
+
+  &.url {
+    text-decoration: underline
+  }
+
+  &.parent {
+    &.important {
+      color: var(--color-keyword);
+    }
+  }
+
+  &.property {
+    color: var(--color-variable);
+  }
+
+  &.regex {
+    color: var(--color-regex);
+  }
+
+  &.rule {
+    color: var(--color-keyword);
+  }
+
+  &.selector {
+    color: var(--color-class);
+  }
+
+  &.string {
+    color: var(--color-string);
+  }
+
+  &.variable {
+    color: var(--color-variable);
+  }
+}
+
+/* JavaScript React, TypeScript React */
+code.language-tsx,
+code.language-jsx,
+pre.language-tsx,
+pre.language-jsx {
+  .token {
+    &.interpolation {
+      .interpolation-punctuation {
+        color: var(--color-keyword);
+      }
+    }
+
+    &.tag {
+      .token {
+        &.script {
+          .token {
+            &.punctuation {
+              color: var(--color-keyword);
+            }
+
+            &.script-punctuation {
+              color: var(--color-base);
+              opacity: 0.7;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+/* SASS, SCSS */
+code.language-sass,
+code.language-scss {
+  .token {
+    &.property {
+      color: var(--color-variable);
+    }
+  }
+}

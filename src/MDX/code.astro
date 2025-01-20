@@ -1,0 +1,22 @@
+<code><slot /></code>
+<style>
+	code {
+		background: var(--code-background);
+		border: 1px solid var(--noticeoklchrelativelight);
+		padding: 1px 2px;
+		border-radius: 5px;
+	}
+
+    .button:hover code {
+        background: var(--hover-code-background, #ff6347);
+    }
+
+    @media screen and (min-width: 768px) {
+        code {
+            background: var(--code-background);
+            border: 1px solid var(--noticeoklchrelativelight);
+            padding: 1px 4px;
+            border-radius: 5px;
+	    }
+    }
+</style>

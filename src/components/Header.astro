@@ -1,0 +1,86 @@
+---
+import Burger from './Burger'
+import Logo from './Logo.astro'
+import SwitchPage from './SwitchPage.astro'
+---
+
+<nav class='nav'>
+  <div class='container'>
+    <div class='left'>
+      <Logo />
+      <SwitchPage />
+    </div>
+    <div class='sm:block hidden'>
+      <Burger anchor='bottom end' client:load />
+    </div>
+  </div>
+</nav>
+
+<div class="block"></div>
+
+<nav class='nav-phone'>
+  <Burger anchor='bottom' client:media="(max-width: 600px)" />
+</nav>
+
+<style>
+  .nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--background);
+    border-bottom: 1px solid var(--noticeoklch);
+    z-index: 2;
+  }
+  .block {
+    width: 100%;
+    height: 5rem;
+  }
+  .nav .container {
+    width: 100%;
+    height: calc(100% - 46%);
+    max-width: var(--max-width);
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .nav-phone {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+  }
+  .left {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  @media (min-width: 540px) {
+    .nav-phone {
+      display: none;
+    }
+    .nav .container {
+      width: var(--frame-width);
+    }
+  }
+  @media (min-width: 1100px) {
+    .nav {
+      position: sticky;
+    }
+    .block {
+      display: none;
+    }
+    .nav .container {
+      width: var(--frame-width);
+    }
+  }
+</style>

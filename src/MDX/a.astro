@@ -1,0 +1,8 @@
+---
+import TextArticle from '../components/TextArticle.astro'
+const { href } = Astro.props
+---
+
+<TextArticle size='md' theme='accent' url={href} type='link'>
+  <slot />
+</TextArticle>

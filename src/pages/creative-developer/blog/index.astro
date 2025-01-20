@@ -1,0 +1,15 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../../../layouts/Layout.astro";
+const creativeposts = await getCollection('creativeblog');
+---
+
+<Layout title="Blog" description="Blog page">
+    <!-- <section class="w-full h-dvh flex justify-center items-center text-black"> -->
+        {
+            creativeposts.map((post) => (
+                <a href={`/creative-developer/blog/${post.id}`}>{post.data.Name}</a>
+            ))
+        }
+    <!-- </section> -->
+</Layout>

@@ -1,0 +1,42 @@
+---
+const { data } = Astro.props
+const vaildHeading = data.filter((heading: { depth: number }) => heading.depth === 2)
+---
+
+{vaildHeading.length > 0 &&
+<aside class="pc sticky text-[var(--text)] text-xs 2xl:text-base selection:text-[var(--sl-color-white)] selection:bg-[var(--sl-color-accent)] hidden 2xl:flex flex-col top-28 2xl:top-34 mt-9.5 2xl:mt-25 h-[calc(100dvh-30dvh)] space-y-4 2xl:space-y-4.5 pt-1 pl-1">
+    <small>Table of Content</small>
+    <ul class="inline-flex flex-col gap-1">
+        {vaildHeading.map((heading: { slug: string; text: string }) => {
+            return <li>
+                <a href={`#${heading.slug}`} class="scroll-link">
+                    {heading.text}
+                </a>
+            </li>
+        })}
+    </ul>
+</aside>
+}
+
+<script is:inline fetchpriority="low">
+  document.addEventListener('DOMContentLoaded', () => {
+    if (window.innerWidth > 1538) {
+      const links = document.querySelectorAll('.scroll-link');
+
+      links.forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const targetId = link.getAttribute('href').slice(1);
+          const targetElement = document.getElementById(targetId);
+
+          if (targetElement) {
+            window.scrollTo({
+              top: targetElement.offsetTop - 110,
+              behavior: 'smooth',
+            });
+          }
+        });
+      });
+    }
+  });
+</script>

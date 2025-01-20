@@ -1,0 +1,38 @@
+---
+const { data, ...reset } = Astro.props
+---
+
+<link rel="preload" href={data.VideoFallback} as="image" fetchpriority="high">
+<video aria-label="Video has no sounds, only preview purpose" {...reset} class="lazy" id="my-video" controls={false} poster={data.VideoFallback} autoplay muted loop playsinline preload="none" onmouseenter="event.target.setAttribute('preload','metadata')" webkit-playsinline x5-playsinline>
+    <img src={data.VideoFallback} alt="Video Fallback" />
+    <source src={data.VideoShow} type="video/mp4" />
+    <track src="/video/test/subtitles.vtt" kind="subtitles" srclang="en" label="english_captions">
+</video>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    var lazyVideos = [].slice.call(document.querySelectorAll("video.lazy"));
+
+    if ("IntersectionObserver" in window) {
+        var lazyVideoObserver = new IntersectionObserver(function(entries, observer) {
+        entries.forEach(function(video) {
+            if (video.isIntersecting) {
+            for (var source of video.target.children) {
+                if (source instanceof HTMLSourceElement && source.dataset.src) {
+                    source.src = source.dataset.src;
+                }
+            }
+
+            (video.target as HTMLVideoElement).load();
+            video.target.classList.remove("lazy");
+            lazyVideoObserver.unobserve(video.target);
+            }
+        });
+        });
+
+        lazyVideos.forEach(function(lazyVideo) {
+        lazyVideoObserver.observe(lazyVideo);
+        });
+    }
+});
+</script>

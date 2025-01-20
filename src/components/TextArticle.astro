@@ -1,0 +1,467 @@
+---
+import type { HTMLAttributes } from 'astro/types'
+
+interface Props extends HTMLAttributes<'p'> {
+  size?: 'sm' | 'md' | 'lg' | 'xl' | '2xl'
+  theme?: 'title' | 'accent' | 'default' | 'primary' | 'secondary'
+  weight?: '100' | '200' | '300' | '400' | '500' | '600' | '700' | '800' | '900'
+  type?:
+    | 'p'
+    | 'link'
+    | 'h2'
+    | 'h3'
+    | 'h4'
+    | 'strong'
+    | 'ul'
+    | 'li'
+    | 'blockquote'
+    | 'code'
+    | 'ol'
+  lineHeight?: string
+  textSize?: string
+  filled?: boolean
+  button?: boolean
+  transparent?: boolean
+  classes?: string
+  url?: string
+}
+
+const {
+  size = 'md',
+  classes,
+  filled,
+  button,
+  weight = '400',
+  theme = 'default',
+  lineHeight,
+  textSize,
+  url,
+  type = 'p',
+  transparent = false,
+  ...rest
+} = Astro.props
+const foreground =
+  theme === 'primary'
+    ? 'var(--text)'
+    : theme === 'secondary'
+      ? 'var(--abstract)'
+      : theme === 'accent'
+        ? 'var(--accent)'
+        : 'var(--noticeoklchrelative)'
+const backgroundhover = transparent
+  ? 'var(--transparent)'
+  : 'var(--backdrop-accent)'
+---
+
+{
+  type === 'p' && (
+    <p
+      data-size={size}
+      {...rest}
+      class:list={['button inline-block transition-all break-words', classes]}
+    >
+      <slot />
+    </p>
+  )
+}
+
+{
+  type === 'h2' && (
+    <h2
+      data-size={size}
+      {...rest}
+      class:list={[
+        button ? 'button' : '',
+        'transition-all h dark:text-white',
+        classes
+      ]}
+    >
+      <slot />
+    </h2>
+  )
+}
+
+{
+  type === 'h3' && (
+    <h3 data-size={size} {...rest} class:list={['transition-all h', classes]}>
+      <span class:list={[button ? 'button' : '']}>
+        <slot />
+      </span>
+    </h3>
+  )
+}
+
+{
+  type === 'h4' && (
+    <h4
+      data-size={size}
+      {...rest}
+      class:list={[button ? 'button' : '', 'transition-all h', classes]}
+    >
+      <slot />
+    </h4>
+  )
+}
+
+{
+  type === 'link' && (
+    <a
+      target='_blank'
+      rel='noopener noreferrer'
+      data-size={size}
+      {...rest}
+      class:list={[
+        classes,
+        'rounded-md active:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] transition-all'
+      ]}
+      href={url}
+    >
+      <slot />
+    </a>
+  )
+}
+
+{
+  type === 'strong' && (
+    <strong
+      {...rest}
+      class:list={['transition-all dark:transition-none h', classes]}
+    >
+      <slot />
+    </strong>
+  )
+}
+
+{
+  type === 'ul' && (
+    <ul data-size={size} {...rest} class:list={['', classes]}>
+      <slot />
+    </ul>
+  )
+}
+
+{
+  type === 'ol' && (
+    <ol data-size={size} {...rest} class:list={['', classes]}>
+      <slot />
+    </ol>
+  )
+}
+
+{
+  type === 'li' && (
+    <li
+      data-size={size}
+      {...rest}
+      class:list={['list-disc list-inside button transition-all', classes]}
+    >
+      <slot />
+    </li>
+  )
+}
+
+{
+  type === 'blockquote' && (
+    <blockquote
+      data-size={size}
+      {...rest}
+      class:list={['transition-all button', classes]}
+    >
+      <slot />
+    </blockquote>
+  )
+}
+
+{
+  type === 'code' && (
+    <code data-size={size} {...rest} class:list={[classes]}>
+      <slot />
+    </code>
+  )
+}
+
+<style
+  define:vars={{ foreground, weight, textSize, lineHeight, backgroundhover }}
+>
+  a {
+    cursor: pointer;
+    display: inline-block;
+  }
+  .button {
+    padding: 0.1rem 0.1rem;
+    cursor: pointer;
+    border-radius: 0.375rem;
+  }
+  li {
+    padding-inline-start: 1ch;
+  }
+  /* PC Dark */
+  .button:hover {
+    background-color: var(--backgroundhover);
+    color: var(--abstract);
+    animation-duration: 100ms;
+  }
+  html.dark .button:hover ~ .button,
+  html.dark .button:has(~ .button:hover) {
+    color: var(--noticeoklchrelativelight);
+    filter: blur(1px);
+    animation-duration: 100ms;
+  }
+  .h:has(~ .button:hover) {
+    filter: blur(0px);
+    animation-duration: 100ms;
+  }
+  /* PC */
+  .button:hover {
+    background-color: var(--backgroundhover);
+    color: var(--abstract);
+    animation-duration: 100ms;
+  }
+  .button:hover ~ .button,
+  .button:has(~ .button:hover) {
+    color: var(--noticeoklchrelativelight);
+    filter: blur(1px);
+    animation-duration: 100ms;
+  }
+  .h:has(~ .button:hover) {
+    filter: blur(0.4px);
+    animation-duration: 100ms;
+  }
+  /* Mobile */
+  .button {
+    padding: 0.15rem 0.15rem;
+  }
+  .button:active {
+    background-color: var(--backgroundhover);
+    color: var(--abstract);
+  }
+  .button:active ~ .button,
+  .button:has(~ .button:active) {
+    filter: blur(1px);
+  }
+  .button:active ~ .h,
+  .h:has(~ .button:active) {
+    filter: blur(0.8px);
+  }
+  [data-size='sm'] {
+    color: var(--foreground);
+    font-size: var(--textSize, 0.875rem); /* 14px */
+    line-height: var(--lineHeight, 1.25rem); /* 20px */
+  }
+  [data-size='md'] {
+    font-weight: var(--weight);
+    font-size: calc(var(--textSize, 1.125rem) - 0.1rem) /* 18px */;
+    line-height: calc(var(--lineHeight, 1.75rem) - 0.06rem); /* 28px */
+    color: var(--foreground);
+  }
+  [data-size='lg'] {
+    font-weight: var(--weight);
+    font-size: var(--textSize, 1.25rem); /* 20px */
+    line-height: var(--lineHeight, 1.75rem); /* Default line-height */
+    color: var(--foreground);
+  }
+  [data-size='xl'] {
+    font-weight: var(--weight);
+    font-size: var(--textSize, 1.5rem); /* 24px */
+    line-height: var(--lineHeight, 2rem); /* 32px */
+    color: var(--foreground);
+  }
+  [data-size='2xl'] {
+    font-weight: var(--weight);
+    font-size: var(--textSize, 1.875rem); /* 30px */
+    line-height: var(--lineHeight, 2.25rem); /* 36px */
+    color: var(--foreground);
+    background-image: linear-gradient(
+      var(--noticeoklch) -100%,
+      var(--abstract) 100%
+    );
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-text-fill-color: transparent;
+  }
+  @media screen and (min-width: 540px) {
+    [data-size='sm'] {
+      color: var(--foreground);
+      font-size: var(--textSize, 0.875rem); /* 14px */
+      line-height: var(--lineHeight, 1.25rem); /* 20px */
+    }
+    [data-size='md'] {
+      font-weight: var(--weight);
+      font-size: calc(var(--textSize, 1.125rem) - 0.19rem) /* 18px */;
+      line-height: calc(var(--lineHeight, 1.75rem) - 0.09rem); /* 28px */
+      color: var(--foreground);
+    }
+    [data-size='lg'] {
+      font-weight: var(--weight);
+      font-size: calc(var(--textSize, 1.25rem) - 0.1rem); /* 20px */
+      line-height: calc(
+        var(--lineHeight, 1.75rem) - 0.1rem
+      ); /* Default line-height */
+      color: var(--foreground);
+    }
+    [data-size='xl'] {
+      font-weight: var(--weight);
+      font-size: var(--textSize, 1.5rem); /* 24px */
+      line-height: var(--lineHeight, 2rem); /* 32px */
+      color: var(--foreground);
+    }
+    [data-size='2xl'] {
+      font-weight: var(--weight);
+      font-size: var(--textSize, 1.875rem); /* 30px */
+      line-height: var(--lineHeight, 2.25rem); /* 36px */
+      color: var(--foreground);
+      background-image: linear-gradient(
+        var(--noticeoklch) -100%,
+        var(--abstract) 100%
+      );
+      -webkit-background-clip: text;
+      -moz-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      -moz-text-fill-color: transparent;
+    }
+  }
+  @media screen and (min-width: 768px) {
+    [data-size='md'] {
+      font-weight: var(--weight);
+      font-size: calc(var(--textSize, 1.125rem) - 0.15rem) /* 18px */;
+      /* line-height: calc(var(--lineHeight, 1.75rem) - 0.075rem); */
+      line-height: calc(var(--lineHeight, 1.75rem) - 0.1rem); /* 28px */
+      color: var(--foreground);
+    }
+  }
+  @media screen and (min-width: 1100px) {
+    .button {
+      padding: 0.15rem 0.15rem;
+    }
+    .button:active {
+      background-color: var(--backgroundhover);
+      color: var(--abstract);
+    }
+    .button:active ~ .button,
+    .button:has(~ .button:active) {
+      filter: blur(1px);
+    }
+    .button:active ~ .h,
+    .h:has(~ .button:active) {
+      filter: blur(0px);
+    }
+    [data-size='md'] {
+      font-weight: var(--weight);
+      font-size: calc(var(--textSize, 1.125rem) - 0.12rem) /* 18px */;
+      /* line-height: calc(var(--lineHeight, 1.75rem) - 0.08rem); */
+      line-height: calc(var(--lineHeight, 1.75rem) - 0.1rem); /* 28px */
+      color: var(--foreground);
+    }
+  }
+  @media screen and (min-width: 1536px) {
+    [data-size='sm'] {
+      color: var(--foreground);
+      font-size: var(--textSize, 0.875rem); /* 14px */
+      line-height: var(--lineHeight, 1.25rem); /* 20px */
+    }
+    [data-size='md'] {
+      font-weight: var(--weight);
+      font-size: calc(var(--textSize, 1.125rem) - 0.06rem);
+      line-height: calc(var(--lineHeight, 1.75rem) - 0.02rem);
+      /* font-size: calc(var(--textSize, 1.125rem) - 0.1rem);
+            line-height: calc(var(--lineHeight, 1.75rem) - 0.05rem); */
+      color: var(--foreground);
+    }
+    [data-size='lg'] {
+      font-weight: var(--weight);
+      font-size: var(--textSize, 1.25rem); /* 20px */
+      line-height: var(--lineHeight, 1.75rem); /* Default line-height */
+      color: var(--foreground);
+    }
+    [data-size='xl'] {
+      font-weight: var(--weight);
+      font-size: var(--textSize, 1.5rem); /* 24px */
+      line-height: var(--lineHeight, 2rem); /* 32px */
+      color: var(--foreground);
+    }
+    [data-size='2xl'] {
+      font-weight: var(--weight);
+      font-size: var(--textSize, 1.875rem); /* 30px */
+      line-height: var(--lineHeight, 2.25rem); /* 36px */
+      color: var(--foreground);
+      background-image: linear-gradient(
+        var(--noticeoklch) -100%,
+        var(--abstract) 100%
+      );
+      -webkit-background-clip: text;
+      -moz-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      -moz-text-fill-color: transparent;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .button:hover {
+      background-color: var(--backgroundhover);
+      color: var(--abstract);
+    }
+    .button:hover ~ .button,
+    .button:has(~ .button:hover) {
+      color: var(--noticeoklchrelativelight);
+      filter: blur(0px);
+    }
+    .h:has(~ .button:hover) {
+      filter: blur(0px);
+    }
+  }
+  @media (prefers-contrast: low) {
+    @media (min-width: 1536px) {
+      [data-size='sm'] {
+        color: var(--foreground);
+        font-size: var(--textSize, 0.875rem); /* 14px */
+        line-height: var(--lineHeight, 1.25rem); /* 20px */
+      }
+      [data-size='md'] {
+        font-weight: var(--weight);
+        font-size: (var(--textSize, 1.125rem)) /* 18px */;
+        line-height: var(--lineHeight, 1.75rem); /* 28px */
+        color: var(--foreground);
+      }
+      [data-size='lg'] {
+        font-weight: var(--weight);
+        font-size: var(--textSize, 1.25rem); /* 20px */
+        line-height: var(--lineHeight, 1.75rem); /* Default line-height */
+        color: var(--foreground);
+      }
+      [data-size='xl'] {
+        font-weight: var(--weight);
+        font-size: var(--textSize, 1.5rem); /* 24px */
+        line-height: var(--lineHeight, 2rem); /* 32px */
+        color: var(--foreground);
+      }
+      [data-size='2xl'] {
+        font-weight: var(--weight);
+        font-size: var(--textSize, 1.875rem); /* 30px */
+        line-height: var(--lineHeight, 2.25rem); /* 36px */
+        color: var(--foreground);
+        background-image: linear-gradient(
+          var(--noticeoklch) -100%,
+          var(--abstract) 100%
+        );
+        -webkit-background-clip: text;
+        -moz-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        -moz-text-fill-color: transparent;
+      }
+    }
+  }
+  @media (prefers-contrast: high) {
+    .button:hover {
+      background-color: var(--backgroundhover);
+      color: var(--abstract);
+    }
+    .button:hover ~ .button,
+    .button:has(~ .button:hover) {
+      color: var(--noticeoklchrelativelight);
+      filter: blur(1px);
+    }
+    .h:has(~ .button:hover) {
+      filter: blur(0.8px);
+    }
+  }
+</style>

@@ -1,0 +1,26 @@
+---
+import HeadSEO from "../components/HeadSEO.astro";
+import PageFrame from '../components/PageFrame.astro';
+import Sidebar from '../components/Sidebar.astro';
+import MobileSidebar from '../components/SidebarMobile.astro';
+import ButtonMobileSidebar from '../components/ButtonMobileSidebar.astro';
+
+type Props = {
+	title: string;
+	description: string;
+};
+
+const { title, description } = Astro.props;
+---
+<HeadSEO title={title} description={description}>
+	<slot name="redirect" />
+	<main class='w-full h-[2000px] flex justify-center'>
+		<MobileSidebar />
+		<PageFrame>
+			<Sidebar />
+				<ButtonMobileSidebar />
+				<slot />
+			</ArticleFrame>
+		</PageFrame>
+	</main>
+</HeadSEO>

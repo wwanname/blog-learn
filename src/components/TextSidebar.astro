@@ -1,0 +1,172 @@
+---
+import "../app.css";
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"p"> {
+  size?: "sm" | "md" | "lg" | "xl" | "2xl";
+  filled?: boolean;
+  button?: boolean;
+  classes?: string;
+  theme?:
+    | "title"
+    | "default"
+    | "primary"
+    | "secondary"
+  weight?: "100" | "200" | "300" | "400" | "500" | "600" | "700" | "800" | "900";
+  lineHeight?: string;
+  textSize?: string;
+}
+
+const {
+  size = "md",
+  classes,
+  filled,
+  button,
+  weight = "400",
+  theme = "default",
+  lineHeight,
+  textSize,
+  ...rest
+} = Astro.props;
+const foreground = theme === "primary" ? "var(--texthsl)": theme === "secondary" ? "var(--abstract)" :  "var(--noticeoklchrelative)";
+---
+
+{button && <span data-size={size} {...rest} class:list={[filled ? "filled" : "", "button", classes]}>
+    <a href="/creative-developer" class:list={[!filled && "hover:bg-[var(--backdrop-accent)] dark:text-[var(--noticeoklch)] dark:hover:text-white/60 dark:hover:bg-white/5 transition-all rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--backdrop)] cursor-pointer focus-visible:ring-offset-2 focus-visible:ring-offset-gray-100 dark:focus-visible:ring-offset-gray-800"]}>
+        <slot/>
+    </a>
+</span>}
+
+{!button && <p data-size={size} {...rest} class:list={[filled ? "filled" : "", classes]}>
+    <slot />
+</p>}
+
+<style define:vars={{ foreground, weight, textSize, lineHeight }}>
+    .button {
+        display: inline-flex;
+    }
+    .button a {
+        display: block;
+        padding: 0.06rem 0.2rem;
+        cursor: pointer;
+        border-radius: 0.375rem;
+    }
+    .filled a {
+        background-color: var(--backdrop-accent);
+        color: var(--accent);
+        padding: 0.1rem 0.65rem;
+    }
+    [data-size="sm"] {
+        color: var(--foreground);
+        font-size: var(--textSize, 0.875rem); /* 14px */
+        line-height: var(--lineHeight, 1.25rem); /* 20px */
+    }
+    [data-size="md"] {
+        font-weight: var(--weight);
+        font-size: var(--textSize, 1.125rem)/* 18px */;
+        line-height: var(--lineHeight, 1.75rem); /* 28px */
+        color: var(--foreground);
+    }
+    [data-size="lg"] {
+        font-weight: var(--weight);
+        font-size: var(--textSize, 1.25rem); /* 20px */
+        line-height: var(--lineHeight, 1.75rem); /* Default line-height */
+        color: var(--foreground);
+    }
+    [data-size="xl"] {
+        font-weight: var(--weight);
+        font-size: var(--textSize, 1.5rem); /* 24px */
+        line-height: var(--lineHeight, 2rem); /* 32px */
+        color: var(--foreground);
+    }
+    [data-size="2xl"] {
+        font-weight: var(--weight);
+        font-size: var(--textSize, 1.875rem); /* 30px */;
+        line-height: var(--lineHeight, 2.25rem); /* 36px */
+        color: var(--foreground);
+        background-image: linear-gradient(var(--notice) -100%, var(--abstract) 100%);
+        -webkit-background-clip: text;
+        -moz-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        -moz-text-fill-color: transparent;
+    }
+    @media screen and (min-width: 1100px) {
+        [data-size="md"] {
+            font-weight: calc(var(--weight) - 100);
+        }
+        [data-size="lg"] {
+            font-weight: calc(var(--weight) - 100);
+        }
+        html.dark span.button[data-size="md"] {
+            font-weight: var(--weight);
+        }
+        html.dark span.button[data-size="lg"] {
+            font-weight: var(--weight);
+        }
+    }
+    @media (min-width: 1536px) {
+        [data-size="md"] {
+            font-weight: calc(var(--weight) - 10);
+            font-size: calc(var(--textSize, 1.125rem) + 0.15rem);
+            line-height: calc(var(--lineHeight, 1.75rem) + 0.1rem);
+            color: var(--foreground);
+        }
+        [data-size="lg"] {
+            font-weight: calc(var(--weight) - 10);
+            font-size: calc(var(--textSize, 1.25rem) + 0.15rem);
+            line-height: calc(var(--lineHeight, 1.75rem) + 0.1rem);
+            color: var(--foreground);
+        }
+        html.dark span.button[data-size="md"] {
+            font-weight: calc(var(--weight) + 40);
+            font-size: calc(var(--textSize, 1.125rem) + 0.15rem);
+            line-height: calc(var(--lineHeight, 1.75rem) + 0.1rem);
+            color: var(--foreground);
+        }
+
+        html.dark span.button[data-size="lg"] {
+            font-weight: calc(var(--weight) + 40);
+            font-size: calc(var(--textSize, 1.25rem) + 0.15rem);
+            line-height: calc(var(--lineHeight, 1.75rem) + 0.1rem);
+            color: var(--foreground);
+        }
+    }
+    @media (prefers-contrast: low) {
+        @media (min-width: 1536px) {
+            [data-size="sm"] {
+                color: var(--foreground);
+                font-size: var(--textSize, 0.875rem);
+                line-height: var(--lineHeight, 1.25rem);
+            }
+            [data-size="md"] {
+                font-weight: var(--weight);
+                font-size: var(--textSize, 1.125rem);
+                line-height: var(--lineHeight, 1.75rem);
+                color: var(--foreground);
+            }
+            [data-size="lg"] {
+                font-weight: var(--weight);
+                font-size: var(--textSize, 1.25rem);
+                line-height: var(--lineHeight, 1.75rem);
+                color: var(--foreground);
+            }
+            [data-size="xl"] {
+                font-weight: var(--weight);
+                font-size: var(--textSize, 1.5rem);
+                line-height: var(--lineHeight, 2rem);
+                color: var(--foreground);
+            }
+            [data-size="2xl"] {
+                font-weight: var(--weight);
+                font-size: var(--textSize, 1.875rem);
+                line-height: var(--lineHeight, 2.25rem);
+                color: var(--foreground);
+                background-image: linear-gradient(var(--notice) -100%, var(--abstract) 100%);
+                -webkit-background-clip: text;
+                -moz-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                -moz-text-fill-color: transparent;
+            }
+        }
+    }
+</style>

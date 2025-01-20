@@ -1,0 +1,206 @@
+@import 'tailwindcss';
+@config "../tailwind.config.ts";
+
+/* Dark mode colors. */
+:root {
+  interpolate-size: allow-keywords;
+  --transparent: hsla(0, 0, 0, 0) ;
+
+  /* color */
+  --sl-color-accent-low: hsl(6, 12%, 16%);
+  --sl-color-accent: oklch(64.88% 0.2054 24.95);
+  --sl-color-accent-high: oklch(65.82% 0.2002 25.35);
+  --sl-color-white: oklch(97.04% 0.0031 67.79);
+  --sl-color-black: hsl(30, 3%, 14%);
+
+  --background: oklch(96.96% 0 0);
+  --backdrop: oklch(85% 0.004 260.72326850852687);
+  --noticeoklch: oklch(70% 0.01 260.72326850852687);
+  --noticeoklchrelativelight: oklch(70% 0.013 260.72326850852687);
+  --noticeoklchrelative: oklch(50% 0.034 260.72326850852687);
+  /* --noticeoklchrelative: oklch(49% 0.045 260.72326850852687); */
+  --text-input-search: oklch(65% 0 0);
+  --noticehsl: hsl(0 0 70%);
+  --scroll-thumb: oklch(62.68% 0 0);
+  --scroll-track: oklch(95.81% 0 0);
+  --abstract: oklch(30% 0.02239995479007868 260.72326850852687);
+  --abstractthumb: oklch(54% 0.01039995479007868 260.72326850852687);
+  --text: oklch(0% 0 0%);
+  --transparent: hsla(0% 0 0% 0);
+  --texthsl: hsl(0 0 0);
+  --accent: oklch(69.71% 0.1743 258.49);
+  --backdrop-accent: oklch(95.28% 0.02239995479007868 260.72326850852687);
+  --backdrop-accent-hsl: hsl(260.72326850852687 2% 95.28%);
+  --hastag-backdrop: oklch(80.7% 0.1053 260.54);
+  --hastag: oklch(95.97% 0.0206 263.0086539343045);
+  --backdrop-accent-search: oklch(
+    95.28% 0.02239995479007868 260.72326850852687
+  );
+  --code-background: oklch(94.25% 0.0027 106.45);
+  --code-border-background: oklch(70% 0.01 260.72326850852687);
+
+  /* px */
+  --frame-width: calc(100% - 2%);
+  --max-width: 1536px;
+  --text-size: 16px;
+  --text-size-2: 18px;
+  --text-size-3: 20px;
+  --text-size-4: 22px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html.dark {
+  --sl-color-accent-low: hsl(6, 12%, 16%);
+  --sl-color-accent: oklch(69.71% 0.1743 258.49);
+  --sl-color-accent-high: oklch(65.82% 0.2002 25.25);
+  --sl-color-white: oklch(95.28% 0.02239995479007868 260.72326850852687);
+  --sl-color-black: oklch(85.98% 0.0025 67.71);
+
+  --background: oklch(26.14% 0.0038 84.58);
+  --backdrop: oklch(62.48% 0.0028 48.7);
+  --backdrop-relative: oklch(30.36% 0.0159 25.47);
+  --noticeoklch: oklch(50.4% 0 84.57);
+  --noticeoklchrelativelight: oklch(48% 0 25.25);
+  --noticeoklchrelative: oklch(66% 0 25.25);
+  --noticehsl: hsl(0 0 70%);
+  --scroll-thumb: oklch(62.68% 0 0);
+  --scroll-track: oklch(29.05% 0 0);
+  --abstract: oklch(77.44% 0.004 67.76);
+  --abstractthumb: oklch(70% 0 0);
+  --text: oklch(91.36% 0 38.2);
+  --transparent: hsla(0% 0 0% 0);
+  --texthsl: hsl(0 0 0);
+  --accent: oklch(65.25% 0.206 25.5);
+  --backdrop-accent: oklch(27.37% 0.0135 25.47);
+  --backdrop-accent-hsl: hsl(260.72326850852687 2% 95.28%);
+  --hastag-backdrop: oklch(86.03% 0.1406 25.25);
+  --hastag: oklch(95.97% 0.0206 263.0086539343045);
+  --code-background: oklch(26.14% 0.0038 84.58);
+  --code-border-background: oklch(40% 0 25.25);
+
+  --backdrop-accent-search: oklch(61.27% 0.2432 20.96);
+
+  ::-webkit-scrollbar-thumb {
+    background-color: var(--scroll-thumb);
+  }
+
+  ::-webkit-scrollbar-track {
+    background-color: var(--scroll-track);
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: var(--abstractthumb);
+  }
+
+  /* Selection */
+  ::selection {
+    color: var(--sl-color-white);
+    background-color: var(--sl-color-accent);
+  }
+  /* .article ::selection {
+		color: black;
+		background-color: oklch(89% 0.1077 106.45);
+	}; */
+
+  .background-search {
+    background:
+      linear-gradient(var(--background), var(--background)) padding-box,
+      linear-gradient(-40deg, oklch(51.03% 0 0), oklch(51.03% 0 0 / 0%))
+        border-box;
+    background-position: bottom left;
+    border-radius: 1rem;
+    border: 1px solid transparent;
+    box-shadow:
+      0 4px 12.7px oklch(40.11% 0 0 / 15%),
+      0 1px 8px oklch(60.11% 0 0 / 15%);
+    filter: blur(0.4px);
+  }
+
+  .background-bottom-search {
+    background-color: hsla(0, 0%, 15%, 0.85);
+    border-bottom-right-radius: 1rem;
+    border-bottom-left-radius: 1rem;
+    -webkit-backdrop-filter: blur(2px);
+    backdrop-filter: blur(2px);
+  }
+}
+
+.menuJob {
+  color: var(--accent);
+}
+
+.menuJob ~ .menuJob {
+  color: var(--noticeoklch);
+}
+
+.menuJob:hover {
+  color: var(--accent);
+}
+
+.menuJob:hover ~ .menuJob,
+.menuJob:has(~ .menuJob:hover) {
+  color: var(--noticeoklch);
+}
+
+/* var(--backdrop) */
+.background-search {
+  background:
+    linear-gradient(var(--background), var(--background)) padding-box,
+    linear-gradient(100deg, oklch(88.45% 0 0), oklch(51.03% 0 0 / 0%))
+      border-box;
+  background-position: bottom left;
+  border-radius: 1rem;
+  border: 1px solid transparent;
+  box-shadow:
+    0 4px 12.7px oklch(41.84% 0 0 / 20%),
+    0 1px 4px oklch(41.84% 0 0 / 20%);
+  filter: blur(0.4px);
+}
+
+.background-bottom-search {
+  background-color: hsla(0, 0%, 85%, 0.85);
+  border-bottom-right-radius: 1rem;
+  border-bottom-left-radius: 1rem;
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
+}
+
+.h-full.space-y-3.overflow-y-auto {
+  -ms-overflow-style: none;
+  scrollbar-width: thin;
+  scrollbar-color: var(--scroll-thumb) var(--scroll-track);
+}
+.ring-search {
+  box-shadow:
+    inset 0 0 0 0 var(--backdrop-accent-search),
+    inset 0 0 0 0 var(--backdrop-accent-search);
+}
+
+.ring-search:hover {
+  box-shadow:
+    inset 0 1px 19px 0 var(--backdrop-accent-search),
+    inset 0 0.2px 20.5px 0 var(--backdrop-accent-search);
+}
+
+.ring-search:focus {
+  box-shadow:
+    inset 0 1px 19px 0 var(--backdrop-accent-search),
+    inset 0 0.2px 20.5px 0 var(--backdrop-accent-search);
+}
+
+@theme {
+  --activeButton: 0 0 31px 4px oklch(71.79% 0.1475 258.49),
+    0 0 10px 2px hsla(0, 0%, 50%, 40%);
+  --activeButtonDark: 0 0 31px 4px oklch(71.79% 0.1475 25.5),
+    0 0 10px 2px hsla(0, 0%, 50%, 40%);
+  --color-hashtag: var(--hastag-backdrop);
+}
+
+@media (max-width: 1024px) {
+  :root {
+    --frame-width: calc(100% - 2rem);
+  }
+}

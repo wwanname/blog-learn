@@ -1,0 +1,38 @@
+---
+const { hashtag, leading, fontSize, weight } = Astro.props
+---
+
+<div role="button" class="inline-flex items-center py-1.5 sm:py-1 px-2 sm:px-1.75 2xl:py-1.5 2xl:px-2.25 cursor-pointer bg-[var(--hastag-backdrop)] dark:bg-hashtag/15 dark:backdrop-blur-3xl rounded-full">
+    <p class="text-sm text-[var(--hastag)]">
+        <span aria-hidden="true">#</span>
+        {hashtag}
+    </p>
+</div>
+
+<style define:vars={{ leading, fontSize, weight }}>
+    div p {
+        font-weight: var(--weight, 300);
+        font-size: var(--fontSize, 0.625rem)/* 10px */;
+        line-height: var(--leading, 0.75rem)/* 12px */;
+    }
+    @media (min-width: 1100px) {
+        div p {
+            font-weight: var(--weight, 400);
+            font-size: calc(var(--fontSize, 0.625rem) + 0.04rem);
+            line-height: calc(var(--leading, 0.75rem) + 0.01rem);
+        }
+    }
+    @media (min-width: 1536px) {
+        div p {
+            font-weight: var(--weight, 400);
+            font-size: calc(var(--fontSize, 0.625rem) + 0.11rem);
+            line-height: calc(var(--leading, 0.75rem) + 0.02rem);
+        }
+    }
+    @media (max-width: 540px) {
+        div p {
+            font-size: calc(var(--fontSize, 0.625rem) + 0.15rem);
+            line-height: calc(var(--leading, 0.75rem) + 0.1rem);
+        }
+    }
+</style>

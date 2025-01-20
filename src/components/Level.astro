@@ -1,0 +1,17 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"div"> {
+    size?: "sm" | "md" | "lg" | "xl";
+    classes?: string;
+}
+
+const { size, classes } = Astro.props;
+const sizeClass = size === "sm" ? "h-1/5" : size === "md" ? "h-2/5" : size === "lg" ? "h-3/6" : size === "xl" ? "h-4/5" : "h-5/5";
+const diff = size === "sm" ? "Beginner" : size === "md" ? "Medium" : size === "lg" ? "Intermediate" : size === "xl" ? "Advanced" : "h-5/5";
+---
+
+<div role="figure" aria-labelledby="size-description" class:list={['aspect-square overflow-clip', sizeClass, classes]}>
+    <span id="size-description" class="sr-only">{diff}</span>
+    <div class="rounded-full size-full bg-[var(--backdrop)]" />
+</div>

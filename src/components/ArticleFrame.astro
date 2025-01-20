@@ -1,0 +1,26 @@
+<article role="article" class="w-full flex justify-center mt-4 pt-30 lg:pt-7.5 2xl:pt-20">
+    <section class="content-wrapper">
+        <slot />
+    </section>
+</article>
+
+<style>
+    .content-wrapper {
+        width: 100%;
+        height: fit-content;
+    }
+
+    @media (min-width: 540px) {
+        .content-wrapper {
+            width: 70%;
+        }
+    }
+    @media (max-width: 540px) {
+        .content-wrapper {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+</style>

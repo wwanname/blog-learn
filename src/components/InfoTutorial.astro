@@ -1,0 +1,56 @@
+---
+import Logo from "./Logo.astro";
+import Level from "./Level.astro";
+import Text from "./TextInfo.astro";
+import Hashtags from "./Hashtag.astro";
+import Button from "./ButtonCredit.astro";
+import VideoShowTutorial from "./VideoShowTutorial.astro";
+import { Prism } from '@astrojs/prism';
+const { data } = Astro.props
+---
+
+<div class="w-full h-fit space-y-6 mb-6">
+    <!-- Info -->
+    <div class="w-full h-10 2xl:h-11 hidden sm:inline-flex items-center sm:mb-6 2xl:mb-8">
+        <Logo border />
+        <div aria-labelledby="info-publisher" class="h-full flex flex-col ml-[1ch] justify-between -mt-3.25">
+            <Text size="xl" textSize="1.25rem" lineHeight="1.675rem">{data.Name}</Text>
+            <span class="inline-flex space-x-[0.5ch] whitespace-nowrap items-center">
+                <Text aria-label="Date of publication" size="sm" textSize="0.875rem" lineHeight="1.375rem">{data.Date}</Text>
+                <Text aria-hidden="true" size="sm" textSize="0.875rem" lineHeight="1.375rem">/</Text>
+                <Level size="lg" />
+            </span>
+        </div>
+    </div>
+
+    <!-- Title and Tool -->
+    <div aria-labelledby="info-title" class="info space-y-0.5 lg:space-y-1 2xl:space-y-1.25">
+        <Text id="info-title" size="2xl" theme="primary" classes="dark:select-none">{data.Title}</Text>
+        <Text aria-label="Date of publication" size="sm" textSize="0.875rem" lineHeight="1.375rem" classes="block sm:hidden">{data.Date}</Text>
+        <Text aria-label="Used tool" size="sm" theme="default" classes="-mt-0.5" classes="hidden sm:block">{data.Tool}</Text>
+    </div>
+
+    <!-- Description -->
+     <div aria-labelledby="info-description" class="space-y-2 pt-4 sm:pt-0 sm:space-y-0">
+        <Text aria-label="Tool" size="md" theme="default" classes="-mt-0.5" classes="block sm:hidden">{data.Tool}</Text>
+        <Text aria-label="Credit" size="sm" theme="secondary" lineHeight="1.275rem" classes="w-8/9 md:w-4/6 lg:w-5/6">{data.Description}</Text>
+     </div>
+
+    <!-- Button and Hashtag -->
+     <div class="flex flex-col-reverse sm:flex-col md:flex-row-reverse md:items-center lg:flex-col lg:items-start pt-2 sm:pt-0 2xl:pt-2 justify-between sm:space-y-3 md:space-y-0 lg:pt-0.5 2xl:mt-0 lg:space-y-2.5 2xl:space-y-4.25">
+        <div aria-labelledby="source" class="block pt-3.75 sm:pt-0">
+            <Button fontSize="0.75rem" leading="0.938rem" weight="400" id="button-live-demo">Live Demo</Button>
+            <Button fontSize="0.75rem" leading="0.938rem" weight="400" id="button-source-code">Source code</Button>
+        </div>
+        <div aria-labelledby="hashtag" class="space-x-0.5 lg:space-x-0 2xl:space-x-0.5">
+            {data.Hashtag.map((hashtag: string) => (
+                <Hashtags hashtag={hashtag} />
+            ))}
+        </div>
+     </div>
+
+    <!-- Video -->
+     <div class="size-full overflow-x-auto relative rounded-xl 2xl:top-6 top-2">
+        <VideoShowTutorial data={data} />
+     </div>
+</div>

@@ -1,0 +1,28 @@
+---
+import Code from "../components/Code.astro"
+import '../themes/dark-light-modified.scss';
+import HeadSEO from "../components/HeadSEO.astro";
+import Sidebar from '../components/Sidebar.astro';
+import PageFrame from '../components/PageFrame.astro';
+import InfoTutorial from "../components/InfoTutorial.astro";
+import ArticleFrame from "../components/ArticleFrame.astro";
+import MobileSidebar from '../components/SidebarMobile.astro';
+import ButtonMobileSidebar from '../components/ButtonMobileSidebar.astro';
+const { frontmatter, headings } = Astro.props
+---
+
+<HeadSEO title={frontmatter.Title} description={frontmatter.Description}>
+    <main class='w-full flex justify-center'>
+		<MobileSidebar />
+		<PageFrame>
+			<ButtonMobileSidebar />
+			<Sidebar />
+			<ArticleFrame>
+				<InfoTutorial data={frontmatter} />
+				<div class="article w-full h-fit space-y-4 sm:space-y-4.75 lg:space-y-6 2xl:space-y-6 sm:max-w-none max-w-sm 2xl:pt-6 pt-2">
+					<slot />
+				</div>
+			</ArticleFrame>
+		</PageFrame>
+	</main>
+</HeadSEO>

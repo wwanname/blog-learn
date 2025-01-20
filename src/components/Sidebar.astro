@@ -1,0 +1,67 @@
+---
+import Text from "./TextSidebar.astro"
+import Content from "./Content.astro"
+---
+
+<aside class="pc sticky selection:text-[var(--sl-color-white)] selection:bg-[var(--sl-color-accent)] hidden lg:flex flex-col min-w-max w-62.25 top-28 2xl:top-34 mt-9.5 2xl:mt-25 h-[calc(100dvh-30dvh)] space-y-4 2xl:space-y-4.5 overflow-y-auto pt-1 pl-1">
+    <Content open label="Knowledge">
+        <Text textSize="1rem" size="lg" weight="600" slot="title" theme="secondary">Knowledge</Text>
+        <Text textSize="0.875rem" size="md" button theme="default" lineHeight="1.6rem" filled slot="content">Document</Text>
+        <Text textSize="0.875rem" size="md" button theme="default" lineHeight="1.6rem" slot="content">YouTube</Text>
+        <Text textSize="0.875rem" size="md" button theme="default" lineHeight="1.6rem" slot="content">Playlist</Text>
+        <Text textSize="0.875rem" size="md" button theme="default" lineHeight="1.6rem" slot="content">Credit</Text>
+    </Content>
+    <Content open label="Tutorial">
+        <Text textSize="1rem" size="lg" weight="600" slot="title" theme="secondary">Tutorial</Text>
+        <Text textSize="0.875rem" size="md" button theme="default" lineHeight="1.6rem" slot="content">Learn1</Text>
+        <Text textSize="0.875rem" size="md" button theme="default" lineHeight="1.6rem" slot="content">Study2</Text>
+        <Text textSize="0.875rem" size="md" button theme="default" lineHeight="1.6rem" slot="content">Test3</Text>
+        <Text textSize="0.875rem" size="md" button theme="default" lineHeight="1.6rem" slot="content">Do4</Text>
+    </Content>
+    <Content open label="Advanced">
+        <Text textSize="1rem" size="lg" weight="600" slot="title" theme="secondary">Advanced</Text>
+        <Text textSize="0.875rem" size="md" button theme="default" lineHeight="1.6rem" slot="content">Learn1</Text>
+        <Text textSize="0.875rem" size="md" button theme="default" lineHeight="1.6rem" slot="content">Study2</Text>
+        <Text textSize="0.875rem" size="md" button theme="default" lineHeight="1.6rem" slot="content">Test3</Text>
+        <Text textSize="0.875rem" size="md" button theme="default" lineHeight="1.6rem" slot="content">Do4</Text>
+    </Content>
+    <Content open label="Advanced">
+        <Text textSize="1rem" size="lg" weight="600" slot="title" theme="secondary">Advanced</Text>
+        <Text textSize="0.875rem" size="md" button theme="default" lineHeight="1.6rem" slot="content">Learn1</Text>
+        <Text textSize="0.875rem" size="md" button theme="default" lineHeight="1.6rem" slot="content">Study2</Text>
+        <Text textSize="0.875rem" size="md" button theme="default" lineHeight="1.6rem" slot="content">Test3</Text>
+        <Text textSize="0.875rem" size="md" button theme="default" lineHeight="1.6rem" slot="content">Do4</Text>
+    </Content>
+</aside>
+
+<style>
+    .min-w-max.overflow-y-auto::-webkit-scrollbar {
+        width: 5.6px;
+        border-radius: 10px;
+    }
+    .min-w-max.overflow-y-auto::-webkit-scrollbar-track {
+        background: var(--scroll-track);
+    }
+    .min-w-max.overflow-y-auto::-webkit-scrollbar-thumb {
+        background: var(--scroll-thumb);
+        border-radius: 10px;
+    }
+    .min-w-max.overflow-y-auto::-webkit-scrollbar-thumb:hover {
+        background: var(--abstractthumb);
+    }
+    /* .overflow-y-auto::-webkit-scrollbar {
+        width: 6px;
+        border-radius: 10px;
+    }
+    .overflow-y-auto::-webkit-scrollbar-track {
+        background: var(--backdrop);
+        border-radius: 10px;
+    }
+    .overflow-y-auto::-webkit-scrollbar-thumb {
+        background: #888;
+        border-radius: 10px;
+    }
+    .overflow-y-auto::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    } */
+</style>

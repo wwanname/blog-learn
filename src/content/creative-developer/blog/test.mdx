@@ -1,0 +1,100 @@
+---
+Name: wwanname
+Title: Text Parallax
+Date: May, 26, 2024
+Tool: Build with Framer Motion, React
+Description:
+  A Smooth Scroll Parallax animation featuring a zoom with a sticky container.
+  Made with React, Framer Motion and Next js. Picture by Matthias Leidinger.
+  Inspired by [Exoape Plugged Live
+  Shows](https://www.exoape.com/work/plugged-live-shows).
+LiveDemo: https://www.exoape.com/work/plugged-live-shows
+SourceCode: https://www.exoape.com/work/plugged-live-shows
+Hashtag: ['Beginner', 'Text', 'Short', 'Motion']
+VideoFallback: /posts/aeron-chair-by-herman-miller_thumbnail.jpg
+VideoShow: /video/test/path_on_scroll__1_.mp4
+---
+import { Tabs } from 'astro-tabs';
+import { Prism } from '@astrojs/prism';
+import { Code } from 'astro-expressive-code/components'
+
+export const example = `
+  // Example with wrap
+  function getLongString() {
+    return 'This is a very long string that will most probably not fit into the available space unless the container is extremely wide'
+  }
+`
+
+<Tabs class="border border-[var(--code-border-background)] rounded-md overflow-hidden">
+  <Fragment slot="tab-1">Tab 1</Fragment>
+  <Fragment slot="default">
+    <Code
+      code={example}
+      lang='js'
+      mark='getLongString'
+      locale='en-US'
+    />
+  </Fragment>
+  <Fragment slot="tab-2">Tab 2</Fragment>
+  <Fragment slot="slot-2">
+      ```js frame="code"
+      NULL
+      ```
+  </Fragment>
+</Tabs>
+
+A table:
+
+| a   | b   | c   | d   |
+| :-- | :-- | :-- | :-- |
+| 1   | <Prism lang="tsx" code={`NULL`} /> | 3   | 4   |
+| 5   | 6   | 7   | 8   |
+
+## My Experience with the Aeron Chair
+
+I’ve been sitting on a chair from Herman Miller called
+[Aeron Chair](https://amzn.to/3mzPwFZ) for more than 5 years now. You may know
+this chair because it’s so popular around the world. I bought it at Rakuten
+Ichiba.
+
+Before switching, I was using a very cheap chair. Since making the switch, I
+find myself less tired and more productive during long hours of sitting. The
+Aeron Chair is extremely durable and has not shown any signs of wear or breakage
+even after 5 years of constant use.
+
+It's truly worth the `investment`. _Take care of your back!_
+
+1. Oranges
+2. Apples
+
+<div class='note'>
+  ### Watch the Minecraft - Volume Alpha Playlist
+  [♪ Minecraft - Volume Alpha (30 Minute HD Playlist) ♪](https://www.youtube.com/watch?v=bIOiV4d1SVI)
+</div>
+
+## Demo and Source Code
+
+You can check out the live demo and source code for the
+[Text Parallax project here.](https://www.exoape.com/work/plugged-live-shows)
+
+### Tools Used:
+
+- **Framer Motion**: A popular library for creating animations and transitions
+  in React applications, allowing developers to enhance user experiences with
+  smooth and interactive animations.
+- **React**: A JavaScript library for building user interfaces, particularly
+  single-page applications, by allowing developers to create reusable UI
+  components that manage their own state.
+- **Next.js**: A React framework for building server-side rendered web
+  applications, providing features such as routing, data fetching, and
+  server-side rendering.
+
+![Aeron Chair Image](/posts/aiyujiwu-laptop-stand_aiyujiwu-laptop-stand-2-jpg.jpg)
+
+### Video Fallback:
+
+![Video Thumbnail](/posts/aeron-chair-by-herman-miller_thumbnail.jpg)
+
+### Watch the Parallax Animation:
+
+[Video Demo](/video/test/path_on_scroll__1_.mp4)

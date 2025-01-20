@@ -1,0 +1,96 @@
+---
+import Text from "./TextSidebar.astro"
+import Content from "./Content.astro"
+---
+
+<aside
+    popover
+    id="sidebar"
+    class="mobile fixed z-10 w-66.25 backdrop:bg-black/40 h-screen
+    //AnimatePresence
+    transition-discrete
+    //initial
+    starting:open:-translate-x-full
+    starting:open:backdrop:opacity-0
+    //animate
+    open:translate-x-0
+    open:backdrop:opacity-100
+    //exit
+    -translate-x-full
+    backdrop:opacity-0
+    //transition
+    transition-all duration-1000 ease-in-out
+    "
+>
+    <div class="bg-transparent left-4 fixed z-10 selection:text-[var(--sl-color-white)] selection:bg-[var(--sl-color-accent)] flex lg:hidden flex-col min-w-max w-62.25 top-28 2xl:top-34 mt-9.5 2xl:mt-25 h-[calc(100dvh-30dvh)] space-y-4 2xl:space-y-4.5 overflow-y-auto pt-1 pl-1">
+        <Content open label="Knowledge">
+            <Text textSize="1rem" size="lg" weight="600" slot="title" theme="secondary">Knowledge</Text>
+            <Text textSize="0.875rem" size="md" button theme="default" lineHeight="1.6rem" filled slot="content">Document</Text>
+            <Text textSize="0.875rem" size="md" button theme="default" lineHeight="1.6rem" slot="content">YouTube</Text>
+            <Text textSize="0.875rem" size="md" button theme="default" lineHeight="1.6rem" slot="content">Playlist</Text>
+            <Text textSize="0.875rem" size="md" button theme="default" lineHeight="1.6rem" slot="content">Credit</Text>
+        </Content>
+        <Content open label="Tutorial">
+            <Text textSize="1rem" size="lg" weight="600" slot="title" theme="secondary">Tutorial</Text>
+            <Text textSize="0.875rem" size="md" button theme="default" lineHeight="1.6rem" slot="content">Learn1</Text>
+            <Text textSize="0.875rem" size="md" button theme="default" lineHeight="1.6rem" slot="content">Study2</Text>
+            <Text textSize="0.875rem" size="md" button theme="default" lineHeight="1.6rem" slot="content">Test3</Text>
+            <Text textSize="0.875rem" size="md" button theme="default" lineHeight="1.6rem" slot="content">Do4</Text>
+        </Content>
+        <Content open label="Advanced">
+            <Text textSize="1rem" size="lg" weight="600" slot="title" theme="secondary">Advanced</Text>
+            <Text textSize="0.875rem" size="md" button theme="default" lineHeight="1.6rem" slot="content">Learn1</Text>
+            <Text textSize="0.875rem" size="md" button theme="default" lineHeight="1.6rem" slot="content">Study2</Text>
+            <Text textSize="0.875rem" size="md" button theme="default" lineHeight="1.6rem" slot="content">Test3</Text>
+            <Text textSize="0.875rem" size="md" button theme="default" lineHeight="1.6rem" slot="content">Do4</Text>
+        </Content>
+        <Content open label="Advanced">
+            <Text textSize="1rem" size="lg" weight="600" slot="title" theme="secondary">Advanced</Text>
+            <Text textSize="0.875rem" size="md" button theme="default" lineHeight="1.6rem" slot="content">Learn1</Text>
+            <Text textSize="0.875rem" size="md" button theme="default" lineHeight="1.6rem" slot="content">Study2</Text>
+            <Text textSize="0.875rem" size="md" button theme="default" lineHeight="1.6rem" slot="content">Test3</Text>
+            <Text textSize="0.875rem" size="md" button theme="default" lineHeight="1.6rem" slot="content">Do4</Text>
+        </Content>
+    </div>
+    <div class="mobile left-0 fixed top-0 bg-slate-50 dark:bg-neutral-800 flex lg:hidden flex-col min-w-max w-66.25 h-full" />
+</aside>
+
+<style>
+    .overflow-y-auto::-webkit-scrollbar {
+        width: 5.6px;
+        border-radius: 10px;
+    }
+
+    .overflow-y-auto::-webkit-scrollbar-track {
+        background: var(--scroll-track);
+    }
+
+    .overflow-y-auto::-webkit-scrollbar-thumb {
+        background: var(--scroll-thumb);
+        border-radius: 10px;
+    }
+
+    .overflow-y-auto::-webkit-scrollbar-thumb:hover {
+        background: var(--abstractthumb);
+    }
+
+    /* .overflow-y-auto::-webkit-scrollbar {
+        width: 6px;
+        border-radius: 10px;
+    }
+
+    .overflow-y-auto::-webkit-scrollbar-track {
+        background: var(--backdrop);
+        border-radius: 10px;
+    }
+
+    .overflow-y-auto::-webkit-scrollbar-thumb {
+        background: #888;
+        border-radius: 10px;
+    }
+
+    .overflow-y-auto::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    } */
+</style>
+</style>

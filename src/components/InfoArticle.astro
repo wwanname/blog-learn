@@ -1,0 +1,42 @@
+---
+import Logo from "./Logo.astro";
+import Text from "./TextInfo.astro";
+import Level from "./Level.astro";
+import Button from "./ButtonCredit.astro";
+import Hashtags from "./Hashtag.astro";
+import VideoShowTutorial from "./VideoShowTutorial.astro";
+const { data } = Astro.props
+---
+
+<div class="w-full h-fit space-y-6 mb-6">
+    <!-- Info -->
+    <div class="w-full h-11 inline-flex items-center">
+        <Logo border />
+        <div class="h-full flex flex-col ml-[1ch] justify-between -mt-2">
+            <Text size="xl" lineHeight="1.6rem">{data.Name}</Text>
+            <span class="inline-flex space-x-[1ch] whitespace-nowrap items-center">
+                <Text size="sm">{data.Date}</Text>
+                <Text size="sm">/</Text>
+                <Level size="lg" classes="mt-0.5" />
+            </span>
+        </div>
+    </div>
+    <!-- Title and Tool -->
+    <hgroup class="info space-y-1">
+        <Text size="2xl" theme="primary" lineHeight="1.75rem">{data.Title}</Text>
+        <Text size="md" theme="default" lineHeight="1.75rem">{data.Tool}</Text>
+    </hgroup>
+    <!-- Description -->
+    <Text size="md" theme="secondary" classes="leading-3" lineHeight="1.6rem">{data.Description}</Text>
+    <!-- Button and Hashtag -->
+    <Button>Live Demo</Button>
+    <Button>Source code</Button>
+    <div class="hastag space-x-1.5">
+        {data.Hashtag.map((hashtag: string) => (
+            <Hashtags hashtag={hashtag} />
+        ))}
+    </div>
+    <!-- Video -->
+    <VideoShowTutorial data={data} />
+    <!-- <img src={data.VideoFallback} alt="Video Fallback" /> -->
+</div>

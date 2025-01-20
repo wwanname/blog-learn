@@ -1,0 +1,17 @@
+---
+import TextArticle from "../components/TextArticle.astro"
+---
+<TextArticle size="md" type="li">
+    <slot />
+</TextArticle>
+
+<style>
+    li {
+        padding-inline-start: 1ch;
+    }
+    li::marker {
+        list-style-type: '👉';
+        padding-inline-start: 1ch;
+        list-style-image: url(/arrow_blue.svg);
+    }
+</style>

@@ -1,0 +1,15 @@
+---
+import { Image, Picture } from 'astro:assets';
+const { src, alt, width, height } = Astro.props;
+---
+
+<Image
+    src={src}
+    alt={alt}
+    class="rounded-lg"
+    loading="lazy"
+    quality="low"
+    width={1000}
+    height={1000}
+    densities={[0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2]}
+/>
